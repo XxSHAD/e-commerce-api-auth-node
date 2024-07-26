@@ -1,0 +1,19 @@
+// sendEmail.js
+const nodemailer = require('nodemailer');
+const nodemailerConfig = require('./nodemailerConfig');
+
+const sendEmail = async ({ to, subject, html }) => {
+  let testAccount = await nodemailer.createTestAccount();
+
+  const transporter = nodemailer.createTransport(nodemailerConfig);
+
+  return transporter.sendMail({
+    from: '"Zeus" <mohdbilal2870@gmail.com>', // sender address
+    to,
+    subject,
+    html,
+  });
+};
+
+module.exports = { sendEmail, nodemailerConfig }; // Export both the function and the configuration object
+
